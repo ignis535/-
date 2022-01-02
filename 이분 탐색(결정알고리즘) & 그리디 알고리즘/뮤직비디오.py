@@ -3,6 +3,7 @@ import sys
 
 n, m = map(int, input().split())
 dvd = list(map(int, input().split()))
+maximum = max(dvd)
 
 def count(capacity):
     cnt = 1
@@ -20,7 +21,7 @@ right = sum(dvd)
 result = 0
 while left <= right:
     pivot = (left + right) // 2
-    if count(pivot) <= m:
+    if pivot >= maximum and count(pivot) <= m:
         result = pivot
         right = pivot - 1
     else:
