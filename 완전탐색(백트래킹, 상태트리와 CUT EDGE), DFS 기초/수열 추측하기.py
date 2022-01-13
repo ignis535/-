@@ -30,7 +30,7 @@ if __name__ == "__main__":
         tmp = coef[-1] * (n - 1 - r) / (r + 1)
         coef.append(tmp)
     dfs(0)
-"""
+
 import sys
 # sys.stdin = open("input.txt", 'r')
 
@@ -58,3 +58,21 @@ if __name__ == "__main__":
     for i in range(1, n - 1):
         coef[i] = coef[i - 1] * (n - i) / i
     dfs(0, 0)
+"""
+import sys
+import itertools as it
+# sys.stdin = open("input.txt", 'r')
+
+if __name__ == "__main__":
+    n, f = map(int, input().split())
+    coef = [1] * n
+    for i in range(1, n - 1):
+        coef[i] = coef[i - 1] * (n - i) / i
+    arr = [i for i in range(1, n + 1)]
+    for case in it.permutations(arr, n):
+        tot = 0
+        for idx, val in enumerate(case):
+            tot += (coef[idx] * val)
+        if tot == f:
+            print(' '.join(map(str, case)))
+            break
