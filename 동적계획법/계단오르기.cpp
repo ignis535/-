@@ -1,49 +1,26 @@
-/*
-#include <bits/stdc++.h>
-using namespace std;
-
-int main(void){
-	ios_base::sync_with_stdio(false);	
-	cin.tie(NULL);
-	freopen("input.txt", "r", stdin);
-	
-	int n;
-	int i;
-	cin >> n;
-	vector<int> length(n + 1);
-	
-	length[1] = 1;
-	length[2] = 2;
-	for(i = 3; i <= n; i++){
-		length[i] = length[i - 1] + length[i - 2];	
-	}
-	cout << length[n];
-	
-	return 0;
-}
-*/
 #include <bits/stdc++.h>
 using namespace std;
 
 vector<int> memo(46);
 
-int dfs(int len){
-	if(memo[len] != 0) return memo[len];
+int step(int n){
+	if(memo[n] != 0) return memo[n];
 	
-	if(len == 1 || len == 2) return len;
+	if(n == 1 || n == 2) return n;
 	else{
-		return memo[len] = dfs(len - 1) + dfs(len - 2);
+		return memo[n] = step(n - 1) + step(n - 2);
 	}
 }
 
 int main(void){
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
-	// freopen("input.txt", "r", stdin);
+	freopen("input.txt", "r", stdin);
 	
 	int n;
 	scanf("%d", &n);
-	cout << dfs(n);
-		
+	
+	cout << step(n);
+	
 	return 0;
 }
